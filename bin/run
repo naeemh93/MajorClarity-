@@ -1,3 +1,3 @@
 rubocop
 rspec
-ruby lib/program.rb
+ruby lib/meeting.rb
