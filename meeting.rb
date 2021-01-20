@@ -37,25 +37,19 @@ class Meeting
 
 
   def time_slots
-    @time_slots = [
-      { id: 0, start: '9:00', end: '9:30', slot_id: nil },
-      { id: 1, start: '9:30', end: '10:00', slot_id: nil },
-      { id: 2, start: '10:00', end: '10:30', slot_id: nil },
-      { id: 3, start: '10:30', end: '11:00', slot_id: nil },
-      { id: 4, start: '11:00', end: '11:30', slot_id: nil },
-      { id: 5, start: '11:30', end: '12:00', slot_id: nil },
-      { id: 6, start: '12:00', end: '12:30', slot_id: nil },
-      { id: 7, start: '12:30', end: '1:00', slot_id: nil },
-      { id: 8, start: '1:00', end: '1:30', slot_id: nil },
-      { id: 9, start: '1:30', end: '2:00', slot_id: nil },
-      { id: 10, start: '2:00', end: '2:30', slot_id: nil },
-      { id: 11, start: '2:30', end: '3:00', slot_id: nil },
-      { id: 12, start: '3:00', end: '3:30', slot_id: nil },
-      { id: 13, start: '3:30', end: '4:00', slot_id: nil },
-      { id: 14, start: '4:00', end: '4:30', slot_id: nil },
-      { id: 15, start: '4:30', end: '5:00', slot_id: nil }
-    ]
+    require 'time'
+    @time_slots= []
+    newdatetime=[]
+    (0..15).each_with_index do |a,i|
+      thirty_minutes_step = (1.to_f/24/2)
+      date_time = DateTime.parse('9:00 AM')
+      date_time_limit = DateTime.parse('5:00 PM')
 
+      date_time.step(date_time_limit,thirty_minutes_step).each{|e| newdatetime <<  e.strftime("%I:%M %p")}
+
+      @time_slots<< {:id=> i, :starttime=> "#{newdatetime[i]}", :endtime=> "#{newdatetime[i+1]}", :slot_id=> nil }
+    end
+    
   end
 
 
